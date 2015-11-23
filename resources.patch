@@ -1,0 +1,29 @@
+--- resources.py	2015-09-30 15:48:15.842044534 +0200
++++ resources.new.py	2015-09-30 14:56:39.337912162 +0200
+@@ -56,7 +56,7 @@
+         """
+         stack_id = self._resolve_stack_id(stack_id)
+         url_str = '/stacks/%s/resources/%s' % (
+-                  parse.quote(stack_id, ''),
++                  parse.quote(stack_id, '/'),
+                   parse.quote(encodeutils.safe_encode(resource_name), ''))
+         resp, body = self.client.json_request('GET', url_str)
+         return Resource(self, body['resource'])
+@@ -69,7 +69,7 @@
+         """
+         stack_id = self._resolve_stack_id(stack_id)
+         url_str = '/stacks/%s/resources/%s/metadata' % (
+-                  parse.quote(stack_id, ''),
++                  parse.quote(stack_id, '/'),
+                   parse.quote(encodeutils.safe_encode(resource_name), ''))
+         resp, body = self.client.json_request('GET', url_str)
+         return body['metadata']
+@@ -82,7 +82,7 @@
+         """
+         stack_id = self._resolve_stack_id(stack_id)
+         url_str = '/stacks/%s/resources/%s/signal' % (
+-                  parse.quote(stack_id, ''),
++                  parse.quote(stack_id, '/'),
+                   parse.quote(encodeutils.safe_encode(resource_name), ''))
+         resp, body = self.client.json_request('POST', url_str, data=data)
+         return body
